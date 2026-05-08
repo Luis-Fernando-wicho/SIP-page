@@ -1,0 +1,95 @@
+/* //////////////////////////////////////////////////////////////////// */
+.portfolio {
+  height: 100dvh;
+  width: 90%;
+  display: grid;
+  grid-template-columns: 3fr 4fr;
+  align-items: center;
+  justify-items: center;
+}
+
+.portfolio__video {
+  width: 100%;
+  height: auto;
+  max-width: 400px; /* Ajusta según necesites */
+
+  /* Esto ayuda a que el video se integre sin bordes si el fondo es blanco */
+  mix-blend-mode: multiply;
+
+  /* Quita cualquier borde o sombra por defecto */
+  border: none;
+  outline: none;
+
+  /* Asegura que no se vea la barra de controles */
+  object-fit: contain;
+
+  border-radius: 1000%;
+
+  cursor: pointer; /* Cambia la flecha por una mano al pasar el mouse */
+  transition: transform 0.3s ease;
+
+  animation: autorotate;
+  animation-timeline: view();
+}
+
+.portfolio__video:hover {
+  transform: scale(1.02); /* Un pequeño zoom opcional para dar vida */
+}
+
+.portfolio__galery {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.portfolio__galery_title {
+  font-size: 50px;
+  line-height: 1.2;
+  height: auto;
+  color: black;
+  font-family: "Bungee", sans-serif;
+  animation: animation-elements-y linear both;
+  animation-timeline: view();
+  animation-range: entry 0% cover 20%;
+}
+
+.portfolio__galery_carrousel {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 2fr));
+}
+
+.portfolio__galery_image {
+  height: 80%;
+  width: 80%;
+  opacity: 0.7;
+  border-radius: 10%;
+
+  &:hover {
+    scale: 2;
+    opacity: 1;
+    z-index: 99;
+  }
+}
+@keyframes autorotate {
+  from {
+    transform: translateX(-300px) rotate(100deg);
+  }
+  to {
+    transform: translateX(0px) rotate(-20deg);
+  }
+}
+
+@keyframes animation-elements-y {
+  from {
+    opacity: 0; /* controla opacidad */
+    translate: 0 100px; /* controla movimiento inicial */
+    scale: 0.9; /* controla la escala */
+  }
+  to {
+    opacity: 1;
+    translate: 0 0; /* controla movimiento final */
+    scale: 1; /* controla la escala */
+  }
+}

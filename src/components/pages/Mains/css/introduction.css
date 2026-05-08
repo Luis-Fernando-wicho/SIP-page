@@ -1,0 +1,160 @@
+.main-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+/* //////////////////////////////////////////////////////////////////// */
+.introduction {
+  height: 100dvh;
+  width: 90%;
+  display: grid;
+  grid-template-columns: 4fr 3fr;
+  align-items: center;
+  justify-items: center;
+}
+.introduction__container {
+  height: 100%;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  justify-items: center;
+}
+.introduction__title {
+  line-height: 1.2;
+  height: auto;
+  color: red;
+  font-size: 70px;
+
+  display: flex;
+  align-items: center;
+  margin: 70px 100px;
+
+  font-family: "Bungee", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+
+  background: linear-gradient(
+    120deg,
+    red 35%,
+    rgba(255, 255, 255, 0.9) 50%,
+    red 65%
+  );
+  background-size: 250% auto;
+
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  animation:
+    fade-slide-up 1s ease-out forwards,
+    shine-text 10s 4s infinite;
+}
+.introduction__description {
+  box-sizing: border-box;
+  height: 50%;
+  width: 90%;
+  color: white;
+  background-color: red;
+  border-radius: 30px;
+  padding: 50px;
+  display: flex;
+  align-items: center;
+  font-family: Inter, Arial, sans-serif;
+  font-size: 20px;
+  text-align: center;
+
+  position: relative; /* Necesario para contener el brillo */
+  overflow: hidden; /* Evita que el brillo se salga de los bordes redondeados */
+}
+
+.introduction__description::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: skewX(-25deg); /* Inclina la línea para darle estilo */
+  animation: shine-box 10s infinite; /* Ajusta los 4s para hacerlo más rápido o lento */
+}
+
+.introduction__video {
+  width: 100%;
+  height: auto;
+  max-width: 400px; /* Ajusta según necesites */
+
+  /* Esto ayuda a que el video se integre sin bordes si el fondo es blanco */
+  mix-blend-mode: multiply;
+
+  /* Quita cualquier borde o sombra por defecto */
+  border: none;
+  outline: none;
+
+  /* Asegura que no se vea la barra de controles */
+  object-fit: contain;
+
+  border-radius: 1000%;
+
+  cursor: pointer; /* Cambia la flecha por una mano al pasar el mouse */
+  transition: transform 0.3s ease;
+
+  animation: ride-left 3s ease-out forwards;
+}
+
+.introduction__video:hover {
+  transform: scale(1.02); /* Un pequeño zoom opcional para dar vida */
+}
+
+@keyframes shine-text {
+  0% {
+    background-position: 200% center;
+  }
+  40% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: -200% center;
+  }
+}
+
+@keyframes shine-box {
+  0% {
+    left: -150%;
+  }
+  40% {
+    left: 200%;
+  }
+  100% {
+    left: 200%; /* El tiempo restante es una pausa para no abrumar la vista */
+  }
+}
+
+@keyframes fade-slide-up {
+  0% {
+    opacity: 1;
+    transform: translateY(50px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes ride-left {
+  0% {
+    opacity: 0;
+    display: none;
+    transform: translateY(500px) rotate(-200deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) rotate(10deg);
+  }
+}

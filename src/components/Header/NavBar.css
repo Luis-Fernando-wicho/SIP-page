@@ -1,0 +1,37 @@
+.navBar {
+  text-decoration: none;
+  display: flex;
+}
+.navBar__link {
+  color: white;
+  text-decoration: none;
+  font-size: 13px;
+  line-height: 30px;
+  margin-right: 27px;
+  display: flex;
+  align-items: center;
+
+  position: relative; /* INDISPENSABLE para posicionar la línea */
+  transition: scale 0.3s ease;
+}
+
+.navBar__link::after {
+  content: "";
+  position: absolute;
+  bottom: -1px; /* Espacio entre el texto y la línea */
+  left: 0;
+  width: 0; /* Empieza con ancho 0 para la animación */
+  height: 2px; /* Grosor de la línea */
+  background-color: white;
+  transition: width 0.4s ease-in-out; /* La animación de izq a der */
+}
+
+/* Cuando el link esté ACTIVO, la línea crece al 100% */
+.navBar__link_active::after {
+  width: 100%;
+}
+
+/* (Opcional) Si quieres que también se anime al pasar el mouse aunque no esté activo */
+.navBar__link:hover::after {
+  width: 100%;
+}
