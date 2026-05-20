@@ -78,6 +78,8 @@
   align-self: flex-start;
   justify-self: flex-end;
   margin-top: 80px;
+
+  animation: up-down 2s ease-out forwards;
 }
 
 @keyframes fade-slide-up {
@@ -101,5 +103,17 @@
   100% {
     opacity: 1;
     transform: translateX(0);
+  }
+}
+
+@keyframes up-down {
+  0% {
+    opacity: 0;
+    display: none;
+    transform: translateY(-500px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
