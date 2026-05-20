@@ -62,7 +62,7 @@
 }
 
 .header_contact_active {
-  color: black;
+  color: red;
   pointer-events: none;
   text-decoration: none;
   background-color: white;

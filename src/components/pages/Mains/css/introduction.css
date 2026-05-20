@@ -65,6 +65,7 @@
 
   position: relative; /* Necesario para contener el brillo */
   overflow: hidden; /* Evita que el brillo se salga de los bordes redondeados */
+  animation: left-right 3s ease-out forwards;
 }
 
 .introduction__description::after {
@@ -156,5 +157,17 @@
   100% {
     opacity: 1;
     transform: translateY(0) rotate(10deg);
+  }
+}
+
+@keyframes left-right {
+  0% {
+    opacity: 0;
+    display: none;
+    transform: translateX(-500px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
   }
 }

@@ -1,11 +1,15 @@
-/* //////////////////////////////////////////////////////////////////// */
 .portfolio {
   height: 100dvh;
-  width: 90%;
+  width: 100%;
   display: grid;
-  grid-template-columns: 3fr 4fr;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
   align-items: center;
   justify-items: center;
+
+  grid-template-areas:
+    "camara title"
+    "carr carr";
 }
 
 .portfolio__video {
@@ -30,18 +34,12 @@
 
   animation: autorotate;
   animation-timeline: view();
+
+  grid-area: camara;
 }
 
 .portfolio__video:hover {
   transform: scale(1.02); /* Un pequeño zoom opcional para dar vida */
-}
-
-.portfolio__galery {
-  height: 100%;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 }
 
 .portfolio__galery_title {
@@ -53,24 +51,70 @@
   animation: animation-elements-y linear both;
   animation-timeline: view();
   animation-range: entry 0% cover 20%;
+  grid-area: title;
+}
+/* ///////////////////////////////////////////// */
+.portfolio__galery {
+  margin: 0px;
+  width: 100%;
+  height: auto;
+  border: 0px;
+  display: flex;
+  overflow-x: auto;
+  grid-area: carr;
+
+  mask-image: linear-gradient(to right, transparent, #000 5% 95%, transparent);
 }
 
 .portfolio__galery_carrousel {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 2fr));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+  animation: spin 50s infinite linear;
+  padding-right: 1em;
+  height: 100%;
 }
 
 .portfolio__galery_image {
-  height: 80%;
-  width: 80%;
-  opacity: 0.7;
-  border-radius: 10%;
+  flex: 0 0 5em;
+  height: 100%;
+  font-size: 3rem;
+  border-radius: 0.2em;
+  text-align: center;
+  align-content: center;
+  transition: filter 0.5s;
+}
+
+.portfolio__galery_image img {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 1/1;
+  border-radius: 10px;
 
   &:hover {
-    scale: 2;
-    opacity: 1;
-    z-index: 99;
+    scale: 1.05;
   }
+}
+/* ///////////////////////////////////////////////////////////// */
+.portfolio__galery::-webkit-scrollbar {
+  display: none;
+}
+
+.portfolio__galery:hover .portfolio__galery_carrousel {
+  animation-play-state: paused;
+}
+
+.portfolio__galery:hover .portfolio__galery_image {
+  filter: grayscale(1);
+  opacity: 0.6;
+  transition: all 0.3s ease;
+}
+
+.portfolio__galery_image:hover {
+  filter: grayscale(0) !important;
+  opacity: 1 !important;
+  z-index: 10; /* Asegura que la imagen resaltada quede por encima */
 }
 @keyframes autorotate {
   from {
@@ -91,5 +135,14 @@
     opacity: 1;
     translate: 0 0; /* controla movimiento final */
     scale: 1; /* controla la escala */
+  }
+}
+
+@keyframes spin {
+  from {
+    translate: 0;
+  }
+  to {
+    translate: -100%;
   }
 }
